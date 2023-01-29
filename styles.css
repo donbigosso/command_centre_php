@@ -1,0 +1,50 @@
+body {
+  background-color: dimgrey;
+}
+.main-content {
+  width: 100%;
+  min-height: 1000px;
+}
+
+.padding-5 {
+  padding: 5px;
+}
+
+.float-left {
+  float: left;
+}
+
+.margin-left-05em {
+  margin-left: 0.5em;
+}
+.margin-top-05em {
+  margin-top: 0.5em;
+}
+
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center-content {
+  width: 80%;
+  height: 30vh;
+  background-color: #332d2d;
+
+  border-radius: 10px;
+  text-align: center;
+}
+
+.action-field {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 3%;
+}
+
+.center-margin {
+  margin-left: auto;
+  margin-right: auto;
+}
