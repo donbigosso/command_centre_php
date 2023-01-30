@@ -211,10 +211,10 @@ function display_file_detail_array(){
 }
 
 function contact_form_test(){
-    h2_header("Form test");
+    h2_header("Send me a message");
     $cf = new ContactForm;
    
-    $cf->create_form_layout_web3form();
+    $cf->create_web3form_bootstrap();
 
 }
 
