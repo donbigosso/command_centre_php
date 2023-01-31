@@ -24,10 +24,10 @@
             <div class="main-content">
            
         <?php
-        // curl_test();
+      
         insert_uploader();
         insert_new_file_component();
-        contact_form_test();
+        insert_contact_form();
         
         ?>
         

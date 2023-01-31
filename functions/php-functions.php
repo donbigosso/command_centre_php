@@ -2,6 +2,7 @@
 include "./classes/FileUploader.php";
 include "./classes/FileHandler.php";
 include "./classes/ContactForm.php";
+include "./classes/DataHandler.php";
 
 function draw_file_list($parent_folder){
     $file_array = array_diff(scandir($parent_folder), array('..', '.'));
@@ -210,11 +211,11 @@ function display_file_detail_array(){
     print_r($fh->create_file_content_array());
 }
 
-function contact_form_test(){
+function insert_contact_form(){
     h2_header("Send me a message");
     $cf = new ContactForm;
    
-    $cf->create_web3form_bootstrap();
+    $cf->create_web3form_bootstrap(get_setting_value("web3forms_key"));
 
 }
 
@@ -342,9 +343,19 @@ function curl_test(){
     echo $text;
     echo "</h2>";
  }
- function insert_google_contact_form(){
-    h2_header("Contact form");
-    echo'<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeCVTcDi7NljroTUwaM5RRsKMrfx5zr59xTBwHFs4S1STUqxg/viewform?embedded=true" width="640" height="677" frameborder="0" marginheight="0" marginwidth="0">Ładuję…</iframe>';
+
+ function get_setting_value($set_name){
+    $fh = new FileHandler;
+    $dh = new DataHandler;
+    $set_fil_cont = $fh-> get_file_content("./data/settings.json");
+    $set_fil_data = $dh->decode_data($set_fil_cont);
+    $setting_value = $set_fil_data[$set_name];
+    return $setting_value;
+ }
+
+ function set_test(){
+    h2_header("Settings test");
+    echo get_setting_value("web3forms_key");
 
  }
 ?>

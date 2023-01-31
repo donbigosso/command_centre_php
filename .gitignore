@@ -1,3 +1,4 @@
 uploads/
 backup/
 .gitignore
+data/settings.json
