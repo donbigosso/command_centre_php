@@ -3,7 +3,7 @@ include "./classes/FileUploader.php";
 include "./classes/FileHandler.php";
 include "./classes/ContactForm.php";
 include "./classes/DataHandler.php";
-
+include "./classes/FlightSearch.php";
 function draw_file_list($parent_folder){
     $file_array = array_diff(scandir($parent_folder), array('..', '.'));
     
@@ -133,7 +133,7 @@ function create_action_header(){
 
 
 
-function insert_uploader(){
+function insert_uploader_old(){
     echo '<h2>File uploader</h2>
     <form method="POST" action="request_handler.php" enctype="multipart/form-data">       
         <div class="row">
@@ -148,6 +148,11 @@ function insert_uploader(){
     </form>
     ';
    
+}
+
+function insert_uploader(){
+    $fu = new FileUploader;
+    $fu-> insert_uploader_bootstrap();
 }
 
 function insert_form_input(){
@@ -357,6 +362,12 @@ function curl_test(){
     h2_header("Settings test");
     echo get_setting_value("web3forms_key");
 
+ }
+
+ function sky_scanner(){
+    $fs = new FlightSearch;
+    h2_header("Flights to Gambia");
+    $fs -> sky_scaner_widget();
  }
 ?>
 

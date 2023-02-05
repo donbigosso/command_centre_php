@@ -12,9 +12,10 @@
         protected $file_server_name;
         public $upload_success_message;
         protected $upload_failure_message;
-            public function __construct(){
-            $this->file = $_FILES['file'];
-            if(isset($_FILES["file"])){    
+        public function __construct(){
+            
+            if(isset($_FILES["file"])){
+                $this->file = $_FILES['file'];    
                 $this->uniq_ID= uniqid('',true);
                 $this->file_name = $this->file['name'];
                 $this->file_error = $this->file['error'];
@@ -28,7 +29,7 @@
                 $this->file_loaded=true;
             }
             else {
-                echo "Uploading file failed. File does not exist. ";
+              //  echo "Uploading file failed. File does not exist. ";
                 $this->file_loaded=false;
             }; 
         }
@@ -212,11 +213,21 @@
             }
         }
 
-        public function add_file_to_list(){
-            $file_no =null;
-            $file_name = $this->file_server_name;
-            $file_size = $this->file_size;
-        }
+      public function insert_uploader_bootstrap($handler="request_handler.php"){
+        echo '<h2>File uploader</h2>
+        <form method="POST" action="'.$handler.'" enctype="multipart/form-data">       
+            <div class="row">
+                <div class="col-md padding-5">
+                    <input class="form-control" type="file" id="file" name="file">
+                </div>
+                <div class="col-md padding-5">
+                   <input type="hidden" value="'.$_SERVER["PHP_SELF"].'" name="source_page">
+                   <input type="submit" value="Upload" name="submit_upload" class="btn btn-primary">
+                </div>
+             </div>
+        </form>
+        ';
+      }
 
     }
 

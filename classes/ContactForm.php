@@ -59,16 +59,9 @@ class ContactForm {
         }
     }
 
-    public function create_form_layout_web3form(){
-        echo '<form action="https://api.web3forms.com/submit" method="POST">';
-        echo '<input type="hidden" name="access_key" value="'.$this->web3forms_key.'">';
-        $this->draw_form_filelds_bootstrap();
-        echo '<input type="hidden" name="redirect" value="https://web3forms.com/success">';
-        echo '<button type="submit">Submit Form</button>';
+ 
 
-    }
-
-    public function create_web3form_bootstrap($key){
+    public function create_web3form_bootstrap($key="external_key_to_be_here"){
         echo '<div class="mb-3">';
         echo '<form action="https://api.web3forms.com/submit" method="POST">';
         echo '<input type="hidden" name="access_key" value="'.$key.'">';

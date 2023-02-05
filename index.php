@@ -28,6 +28,7 @@
         insert_uploader();
         insert_new_file_component();
         insert_contact_form();
+        sky_scanner();
         
         ?>
         
