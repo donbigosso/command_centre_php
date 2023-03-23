@@ -5,6 +5,9 @@ include "./classes/ContactForm.php";
 include "./classes/DataHandler.php";
 include "./classes/FlightSearch.php";
 include "./classes/FileManager.php";
+include "./classes/GalleriesDatabaseAccess.php";
+include "./classes/GalleryInterface.php";
+
 function draw_file_list($parent_folder){
     $file_array = array_diff(scandir($parent_folder), array('..', '.'));
     
@@ -333,6 +336,28 @@ function curl_test(){
     $fs = new FlightSearch;
     h2_header("Flights to Gambia");
     $fs -> sky_scaner_widget();
+ }
+
+
+ function database_test(){
+    $gda = new GalleriesDatabaseAccess;
+    h2_header("Database testing");
+    $gda ->create_gallery_variables();
+
+    $gda->create_gallery_table("Galeria PolAfri");
+ }
+
+ function gall_test(){
+    h2_header("Gallery testing");
+
+    $gi = new GalleryInterface;
+    $gi->set_gallery_path("http://donbigosso.polafri.pl/photos/");
+    $gi->insert_gallery_out_frame("Ewa_birthday_07.jpg","Dzieci siedzą w kole...","Marysia ubiera uprząż.");
+    $gi->insert_gallery_out_frame("Ewa_birthday_13.jpg","Mapa skarbów","Ciekawe gdzie jest skarb?");
+    $gi->insert_items(["g_bissau_02.jpg","g_bissau_08.jpg","g_bissau_07.jpg"],["g_bissau_02_min.jpg",null,"g_bissau_07_min.jpg"],["Photo 1","Photo 2","Photo 3"],["Description of the first picture", "Description of the second picture","Description of the third picture"]);
+ 
+ 
+   
  }
 ?>
 

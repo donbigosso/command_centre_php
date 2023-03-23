@@ -27,6 +27,8 @@
       
         insert_uploader();
         insert_new_file_component();
+        gall_test();
+        database_test();
         insert_contact_form();
         sky_scanner();
         
@@ -35,6 +37,7 @@
             </div>
         
     </div>
+
 
 </body>
 </html>
