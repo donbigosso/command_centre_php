@@ -27,6 +27,8 @@
       
         insert_uploader();
         insert_new_file_component();
+        pic_subm_test();
+        GPT_gall();
         gall_test();
         database_test();
         insert_contact_form();

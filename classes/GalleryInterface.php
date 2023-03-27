@@ -41,7 +41,48 @@ class GalleryInterface {
             }
         }
     }
+
+    public function GPT_gallery_item($picture_name, $caption, $description="", $picture_id, $gallery_id){
+        $picture_path=$this->gallery_path.$picture_name;
+        echo '
+            <div class="gallery-item">
+                <img src="'.$picture_path.'g_bissau_05_min.jpg" alt="Image 1">
+                <div class="caption">
+                <h3>Image 1 Caption</h3>
+                </div>
+            </div>
+        ';
+    }
+
+    public function GPT_gallery(){
+        $gp= $this->gallery_path;
+        echo '
+            <div class="gallery">
+            <div class="gallery-item">
+                <img src="'.$gp.'g_bissau_05_min.jpg" alt="Image 1">
+                <div class="caption">
+                <h3>Image 1 Caption</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="'.$gp.'g_bissau_06_min.jpg" alt="Image 2">
+                <div class="caption">
+                <h3>Image 2 Caption</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="'.$gp.'g_bissau_01_min.jpg" alt="Image 3">
+                <div class="caption">
+                <h3>Image 3 Caption</h3>
+                </div>
+            </div>
+            </div>
+        ';
+    }
+
 }
+
+
 
 //todo
 //frame colors as class varialbles, minature handling

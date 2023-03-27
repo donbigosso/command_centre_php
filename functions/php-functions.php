@@ -343,21 +343,59 @@ function curl_test(){
     $gda = new GalleriesDatabaseAccess;
     h2_header("Database testing");
     $gda ->create_gallery_variables();
-
     $gda->create_gallery_table("Galeria PolAfri");
+    var_dump($gda->return_gall_table());
+ 
  }
 
  function gall_test(){
     h2_header("Gallery testing");
-
+    $gda = new GalleriesDatabaseAccess;
+    $gda ->create_gallery_variables();
+    $gda->create_gallery_table();
+    $gal_tab=$gda->return_gall_table();
     $gi = new GalleryInterface;
     $gi->set_gallery_path("http://donbigosso.polafri.pl/photos/");
-    $gi->insert_gallery_out_frame("Ewa_birthday_07.jpg","Dzieci siedzą w kole...","Marysia ubiera uprząż.");
-    $gi->insert_gallery_out_frame("Ewa_birthday_13.jpg","Mapa skarbów","Ciekawe gdzie jest skarb?");
-    $gi->insert_items(["g_bissau_02.jpg","g_bissau_08.jpg","g_bissau_07.jpg"],["g_bissau_02_min.jpg",null,"g_bissau_07_min.jpg"],["Photo 1","Photo 2","Photo 3"],["Description of the first picture", "Description of the second picture","Description of the third picture"]);
+    $gi->insert_items($gal_tab[0],$gal_tab[1],$gal_tab[2],$gal_tab[3]);
+   
+   // $gi->insert_gallery_out_frame("Ewa_birthday_07.jpg","Dzieci siedzą w kole...","Marysia ubiera uprząż.");
+   // $gi->insert_gallery_out_frame("Ewa_birthday_13.jpg","Mapa skarbów","Ciekawe gdzie jest skarb?");
+   // $gi->insert_items(["g_bissau_02.jpg","g_bissau_08.jpg","g_bissau_07.jpg"],["g_bissau_02_min.jpg",null,"g_bissau_07_min.jpg"],["Photo 1","Photo 2","Photo 3"],["Description of the first picture", "Description of the second picture","Description of the third picture"]);
  
  
    
  }
+
+ function GPT_gall(){
+    h2_header("GPT Gallery testing");
+    $gi = new GalleryInterface;
+    $gi->set_gallery_path("http://donbigosso.polafri.pl/photos/");
+    $gi->GPT_gallery();
+ }
+
+
+ function get_pic_data(){
+    $gda = new GalleriesDatabaseAccess;
+    @$get_pic_id=intval($_GET["pic_id"]);
+    @$get_gal_id=intval($_GET["gal_id"]);
+    $gda ->create_gallery_variables();
+    echo 'Pic id: '.$get_pic_id.' gal ID: '.$get_gal_id;
+    var_dump($gda ->check_if_pic_In_gal($get_gal_id,$get_pic_id));
+ }
+
+ function pic_subm_test(){
+    $api_beg="api_donbigosso.php";
+    $get_vals="?test=answer";
+    $img="http://donbigosso.polafri.pl/photos/Ewa_birthday_12_min.jpg";
+    $api=$api_beg.$get_vals;
+    echo'
+    <form action="'.$api.'" method="POST">
+    <input type="image" name="btn_opentextbox" src="'.$img.'" value="Submit" />
+    </form>
+ 
+    ';
+
+ }
+
 ?>
 
