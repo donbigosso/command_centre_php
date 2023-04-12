@@ -1,6 +1,7 @@
 <?php
     
     include "./functions/php-functions.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,15 +23,18 @@
                 <h1>Donbigosso's Command Centre</h1>
             </div>
             <div class="main-content">
-           
+          
+            
         <?php
-      
+        $gi = new GalleryInterface;
         insert_uploader();
         insert_new_file_component();
-        pic_subm_test();
+        //pic_subm_test();
         GPT_gall();
-        gall_test();
-        database_test();
+      // gall_test();
+       // database_test();
+       
+       insert_GPT_gall();
         insert_contact_form();
         sky_scanner();
         

@@ -339,14 +339,7 @@ function curl_test(){
  }
 
 
- function database_test(){
-    $gda = new GalleriesDatabaseAccess;
-    h2_header("Database testing");
-    $gda ->create_gallery_variables();
-    $gda->create_gallery_table("Galeria PolAfri");
-    var_dump($gda->return_gall_table());
- 
- }
+
 
  function gall_test(){
     h2_header("Gallery testing");
@@ -381,6 +374,15 @@ function curl_test(){
     $gda ->create_gallery_variables();
     echo 'Pic id: '.$get_pic_id.' gal ID: '.$get_gal_id;
     var_dump($gda ->check_if_pic_In_gal($get_gal_id,$get_pic_id));
+    var_dump ($gda->get_pic_filename_by_id(12));
+ }
+
+ function pic_filename_from_get(){
+    @$get_pic_id=intval($_GET["pic_id"]);
+    $gda = new GalleriesDatabaseAccess;
+    $gda ->create_gallery_variables();
+    return $gda->get_pic_filename_by_id($get_pic_id);
+
  }
 
  function pic_subm_test(){
@@ -397,5 +399,30 @@ function curl_test(){
 
  }
 
+ function show_gallery_main_pic($path="http://donbigosso.polafri.pl/photos/",$filename){
+    $full_path=$path.$filename;
+    echo '
+    <img
+    src="'.$full_path.'"
+    alt="'.$filename.'"
+    />
+    ';
+ }
+
+ function add_gal_prev_nav(){
+    $gi = new GalleryInterface;
+    $gi-> insert_closing_button();
+ }
+
+ function insert_GPT_gall(){
+    $gda = new GalleriesDatabaseAccess;
+    $gda ->create_gallery_variables();
+    $gda->create_gallery_table();
+    $gal_tab=$gda->return_gall_table();
+    $gi = new GalleryInterface;
+    $gi -> set_gallery_path("http://donbigosso.polafri.pl/photos/");
+    $gi -> set_gallery_interface_path("http://localhost/my/donbigosso/gallery_preview.php");
+    $gi->GPT_gall_container_new($gal_tab[0],$gal_tab[1],$gal_tab[2],$gal_tab[4],$gal_tab[5]);
+ }
 ?>
 
